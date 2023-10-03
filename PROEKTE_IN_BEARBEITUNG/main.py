@@ -10,3 +10,4 @@ if not koordinaten:
 else:
     # koordinaten an die Maussteuerung übergeben
     maus.anvisieren(koordinaten[0], koordinaten[1])
+    

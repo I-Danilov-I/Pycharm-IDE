@@ -2,6 +2,7 @@ import cv2
 import numpy as np
 import mss
 
+
 def erkennung():
     # Bildschirmaufnahme erstellen
     with mss.mss() as sct:
