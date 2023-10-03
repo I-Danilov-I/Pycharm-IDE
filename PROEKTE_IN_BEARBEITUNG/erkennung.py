@@ -6,7 +6,7 @@ import mss
 def erkennung():
     # Bildschirmaufnahme erstellen
     with mss.mss() as sct:
-        screenshot = sct.shot(output='screenshot.png')
+        sct.shot(output='screenshot.png')
 
     # Laden Sie das aufgenommene Bild
     image = cv2.imread('screenshot.png')
