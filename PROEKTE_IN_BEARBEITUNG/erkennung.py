@@ -1,6 +1,5 @@
 import cv2
 import numpy as np
-import pyautogui
 import mss
 
 
@@ -43,6 +42,16 @@ def erkennung():
 
             # Bild mit markiertem Farbpunkt anzeigen
             cv2.imshow("Image with Cross", image)
+            # Ermitteln Sie die Bildschirmauflösung
+            screen_width, screen_height = 1920, 1080
+            # Erstellen Sie ein OpenCV-Fenster mit der Bildschirmauflösung
+            cv2.namedWindow('Vollbild', cv2.WND_PROP_FULLSCREEN)
+            cv2.setWindowProperty('Vollbild', cv2.WND_PROP_FULLSCREEN, cv2.WINDOW_FULLSCREEN)
+
+            # Zeigen Sie das Bild im Vollbildmodus an
+            cv2.imshow('Vollbild', image)
+
+
 
             # Zur übersicht wo sich der gefundene Farbpunkt befindet
             cv2.waitKey(0)
@@ -53,4 +62,3 @@ def erkennung():
 
     else:
         print("Farbpunkt nicht gefunden.")
-
