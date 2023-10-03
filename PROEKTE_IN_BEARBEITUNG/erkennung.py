@@ -2,7 +2,6 @@ import cv2
 import numpy as np
 import mss
 
-
 def erkennung():
     # Bildschirmaufnahme erstellen
     with mss.mss() as sct:
@@ -11,12 +10,12 @@ def erkennung():
     # Laden Sie das aufgenommene Bild
     image = cv2.imread('screenshot.png')
 
-    # Konvertieren Sie das Bild in den HSV-Farbraum (Hue, Saturation, Value)
+    # Konvertieren Sie das Bild in den HSV-Farbraum
     hsv_image = cv2.cvtColor(image, cv2.COLOR_BGR2HSV)
 
     # Definieren Sie den Farbbereich für Orange im HSV-Farbraum
-    lower_orange = np.array([5, 50, 50])  # Untere Grenze für Orange
-    upper_orange = np.array([15, 255, 255])  # Obere Grenze für Orange
+    lower_orange = np.array([5, 50, 50])  # Untere Grenze für Orange in HSV
+    upper_orange = np.array([15, 255, 255])  # Obere Grenze für Orange in HSV
 
     # Erstellen Sie eine Maske, um nur die orangefarbenen Pixel zu behalten
     mask = cv2.inRange(hsv_image, lower_orange, upper_orange)
@@ -53,3 +52,4 @@ def erkennung():
 
     else:
         print("Orangefarbener Punkt nicht gefunden.")
+        return False
