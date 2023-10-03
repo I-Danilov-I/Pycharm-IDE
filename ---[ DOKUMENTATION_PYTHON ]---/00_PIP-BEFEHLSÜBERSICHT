@@ -1,0 +1,5 @@
+"""Datei mit dem Namen Auto-Downl.py als eine Datei (EXE) Exportieren (Mit Terminal)"""
+pyinstaller .\BRUCH-RECHNER/front.py --onefile
+
+"""Datei mit dem Namen Auto-Downl.py als eine Datei (EXE) Exportieren (Es wird keine Konsole geööfnet)"""
+pyinstaller .\___PROGRAMME___\AUTO_DOWN_STDUNDENPLAN\Auto-Downl.py --onefile -w
