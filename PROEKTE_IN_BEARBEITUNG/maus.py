@@ -2,7 +2,6 @@ import pyautogui
 
 
 def anvisieren(x, y):
-    pyautogui.moveTo(x, y)  # Ziehen Sie die Maus zur neuen Position (400, 400)
-
-    # Linksklick an der aktuellen Mausposition
-    # pyautogui.leftClick()
+    # Ziehen Sie die Maus zur neuen Position (400, 400)
+    pyautogui.moveTo(x, y, duration=2.0)  # duration: Dauer der Bewegung anpassen
+    
