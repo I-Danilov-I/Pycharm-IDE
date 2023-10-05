@@ -11,19 +11,13 @@ CIRCLE_COLOR = (0, 255, 0)  # Grüne Farbe für den Kreis
 # Variable zur Verfolgung des Mauszustands
 right_mouse_pressed = False
 
+
 # Callback-Funktion, um den Mauszustand zu aktualisieren
 def on_click(x, y, button, pressed):
-    """
-    Diese Funktion wird aufgerufen, wenn eine Maustaste gedrückt oder losgelassen wird.
-
-    :param x: Die X-Koordinate des Mausklicks.
-    :param y: Die Y-Koordinate des Mausklicks.
-    :param button: Die gedrückte Maustaste (left, right, middle).
-    :param pressed: Ein Boolean-Wert, der angibt, ob die Maustaste gedrückt wurde (True) oder losgelassen wurde (False).
-    """
     global right_mouse_pressed
     if button == mouse.Button.right:
         right_mouse_pressed = pressed
+
 
 def anvisieren(x, y):
     """
@@ -33,6 +27,7 @@ def anvisieren(x, y):
     :param y: Die Y-Koordinate, zu der die Maus bewegt werden soll.
     """
     pyautogui.moveTo(x, y, duration=0.5)  # duration: Dauer der Bewegung anpassen
+
 
 def erkennung():
     """
@@ -75,8 +70,6 @@ def erkennung():
                         print(f"Position des orangefarbenen Punkts: ({target_x}, {target_y})")
                         anvisieren(target_x, target_y)
 
-                        # Zeichnen Sie einen grünen Kreis um den gefundenen Punkt
-                        cv2.circle(screenshot, (SEARCH_RADIUS, SEARCH_RADIUS), SEARCH_RADIUS, CIRCLE_COLOR, 2)
 
 # Mausklick-Listener initialisieren
 mouse_listener = mouse.Listener(on_click=on_click)
