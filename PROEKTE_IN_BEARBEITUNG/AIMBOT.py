@@ -4,25 +4,36 @@ import mss
 from pynput import mouse
 import pyautogui
 
-
 # Variable zur Verfolgung des Mauszustands
 right_mouse_pressed = False
 
-
-# Callback-Funktion, um den Mauszustand zu aktualisieren
 def on_click(x, y, button, pressed):
+    """
+    Callback-Funktion, die aufgerufen wird, wenn eine Maustaste gedrückt oder losgelassen wird.
+
+    :param x: Die X-Koordinate des Mausklicks.
+    :param y: Die Y-Koordinate des Mausklicks.
+    :param button: Die gedrückte Maustaste (left, right, middle).
+    :param pressed: Ein Boolean-Wert, der angibt, ob die Maustaste gedrückt wurde (True) oder losgelassen wurde (False).
+    """
     global right_mouse_pressed
     if button == mouse.Button.right:
         right_mouse_pressed = pressed
 
-
 def anvisieren(x, y):
-    # Ziehen Sie die Maus zur neuen Position (400, 400)
+    """
+    Bewegt die Maus zur angegebenen Position.
+
+    :param x: Die X-Koordinate, zu der die Maus bewegt werden soll.
+    :param y: Die Y-Koordinate, zu der die Maus bewegt werden soll.
+    """
     pyautogui.moveTo(x, y, duration=0.5)  # duration: Dauer der Bewegung anpassen
 
-
-# Hauptfunktion zur Erkennung und Anzeige des Kreuzes
 def erkennung():
+    """
+    Hauptfunktion zur Erkennung und Steuerung der Mausposition.
+    Diese Funktion überwacht die rechte Maustaste und bewegt die Maus zur Position eines orangefarbenen Punkts.
+    """
     with mss.mss() as sct:
         monitor = sct.monitors[0]
         while True:
@@ -53,7 +64,6 @@ def erkennung():
                         target_y = int(M["m01"] / M["m00"])
                         print(f"Position des orangefarbenen Punkts: ({target_x}, {target_y})")
                         anvisieren(target_x, target_y)
-
 
 # Mausklick-Listener initialisieren
 mouse_listener = mouse.Listener(on_click=on_click)
