@@ -5,7 +5,7 @@ from pynput import mouse
 import pyautogui
 
 # Konstanten für den Radius des Suchbereichs (3 cm)
-SEARCH_RADIUS = 150  # In Pixeln, je nach Auflösung anpassen
+SEARCH_RADIUS = 50  # In Pixeln, je nach Auflösung anpassen
 CIRCLE_COLOR = (0, 255, 0)  # Grüne Farbe für den Kreis
 
 # Variable zur Verfolgung des Mauszustands
@@ -55,12 +55,12 @@ def erkennung():
                 # Konvertieren Sie das aufgenommene Bild in den HSV-Farbraum
                 hsv_image = cv2.cvtColor(screenshot, cv2.COLOR_BGR2HSV)
 
-                # Definieren Sie den Farbbereich für Orange im HSV-Farbraum
-                lower_orange = np.array([5, 50, 50])  # Untere Grenze für Orange in HSV
-                upper_orange = np.array([15, 255, 255])  # Obere Grenze für Orange in HSV
+                # Definieren Sie den Farbbereich für dunkelgrüne Farben im HSV-Farbraum
+                lower_green = np.array([30, 50, 30])  # Untere Grenze für dunkelgrün in HSV
+                upper_green = np.array([90, 255, 255])  # Obere Grenze für dunkelgrün in HSV
 
                 # Erstellen Sie eine Maske, um nur die orangefarbenen Pixel zu behalten
-                mask = cv2.inRange(hsv_image, lower_orange, upper_orange)
+                mask = cv2.inRange(hsv_image, lower_green, upper_green)
 
                 # Suchen Sie nach Konturen in der Maske
                 contours, _ = cv2.findContours(mask, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
@@ -75,8 +75,6 @@ def erkennung():
                         print(f"Position des orangefarbenen Punkts: ({target_x}, {target_y})")
                         anvisieren(target_x, target_y)
 
-                        # Zeichnen Sie einen grünen Kreis um den gefundenen Punkt
-                        cv2.circle(screenshot, (SEARCH_RADIUS, SEARCH_RADIUS), SEARCH_RADIUS, CIRCLE_COLOR, 2)
 
 # Mausklick-Listener initialisieren
 mouse_listener = mouse.Listener(on_click=on_click)
